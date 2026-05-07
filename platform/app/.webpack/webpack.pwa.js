@@ -80,6 +80,18 @@ module.exports = (env, argv) => {
         // Hoisted Yarn Workspace Modules
         path.resolve(__dirname, '../../../node_modules'),
         SRC_DIR,
+        path.resolve(
+          __dirname,
+          '/home/catur/Development/Typescript/RIS-OHIF-Viewers/modes/advanced/node_modules'
+        ),
+        path.resolve(
+          __dirname,
+          '/home/catur/Development/Typescript/RIS-OHIF-Viewers/extensions/clock/node_modules'
+        ),
+        path.resolve(
+          __dirname,
+          '/home/catur/Development/Typescript/RIS-OHIF-Viewers/modes/advanced/node_modules'
+        ),
       ],
     },
     plugins: [

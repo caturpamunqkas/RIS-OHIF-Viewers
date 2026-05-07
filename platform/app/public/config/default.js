@@ -5,13 +5,18 @@ window.config = {
   routerBasename: null,
   // whiteLabeling: {},
   extensions: [],
-  modes: [],
+  modes: [
+    'advanced'
+  ],
   customizationService: {},
   showStudyList: true,
+  investigationalUseDialog: {
+    option: 'never',
+  },
   // some windows systems have issues with more than 3 web workers
   maxNumberOfWebWorkers: 3,
   // below flag is for performance reasons, but it might not work for all servers
-  showWarningMessageForCrossOrigin: true,
+  showWarningMessageForCrossOrigin: false,
   showCPUFallbackMessage: true,
   showLoadingIndicator: true,
   experimentalStudyBrowserSort: false,
@@ -19,13 +24,13 @@ window.config = {
   groupEnabledModesFirst: true,
   allowMultiSelectExport: false,
   maxNumRequests: {
-    interaction: 100,
-    thumbnail: 75,
+    interaction: 50,
+    thumbnail: 35,
     // Prefetch number is dependent on the http protocol. For http 2 or
     // above, the number of requests can be go a lot higher.
     prefetch: 25,
   },
-  showErrorDetails: 'always', // 'always', 'dev', 'production'
+  showErrorDetails: 'production', // 'always', 'dev', 'production'
   // filterQueryParam: false,
   // Defines multi-monitor layouts
   multimonitor: [
@@ -88,7 +93,7 @@ window.config = {
       ],
     },
   ],
-  defaultDataSourceName: 'ohif',
+  defaultDataSourceName: 'DCM4CHEE',
   /* Dynamic config allows user to pass "configUrl" query string this allows to load config without recompiling application. The regex will ensure valid configuration source */
   // dangerouslyUseDynamicConfig: {
   //   enabled: true,
@@ -280,13 +285,38 @@ window.config = {
         friendlyName: 'dicom local',
       },
     },
+
+    {
+      namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
+      sourceName: 'DCM4CHEE',
+      configuration: {
+        friendlyName: 'DCM4CHEE Server',
+        name: 'DCM4CHEE',
+        wadoUriRoot: 'http://172.17.0.66:8080/dcm4chee-arc/aets/DCM4CHEE/wado',
+        qidoRoot: 'http://172.17.0.66:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoRoot: 'http://172.17.0.66:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
+        qidoSupportsIncludeField: true,
+        imageRendering: 'wadors',
+        enableStudyLazyLoad: true,
+        thumbnailRendering: 'wadors',
+        requestOptions: {
+          auth: 'admin:admin',
+        },
+        dicomUploadEnabled: true,
+        singlepart: 'pdf,video',
+        // whether the data source should use retrieveBulkData to grab metadata,
+        // and in case of relative path, what would it be relative to, options
+        // are in the series level or study level (some servers like series some study)
+        bulkDataURI: {
+          enabled: true,
+        },
+        omitQuotationForMultipartRequest: true,
+      },
+    }
   ],
   httpErrorHandler: error => {
     // This is 429 when rejected from the public idc sandbox too often.
     console.warn(error.status);
-
-    // Could use services manager here to bring up a dialog/modal if needed.
-    console.warn('test, navigate to https://ohif.org/');
   },
   // segmentation: {
   //   segmentLabel: {
