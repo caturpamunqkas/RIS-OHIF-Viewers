@@ -5,9 +5,7 @@ window.config = {
   routerBasename: null,
   // whiteLabeling: {},
   extensions: [],
-  modes: [
-    'advanced'
-  ],
+  modes: ['advanced'],
   customizationService: {},
   showStudyList: true,
   investigationalUseDialog: {
@@ -292,15 +290,15 @@ window.config = {
       configuration: {
         friendlyName: 'DCM4CHEE Server',
         name: 'DCM4CHEE',
-        wadoUriRoot: 'http://172.17.0.66:8080/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'http://172.17.0.66:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'http://172.17.0.66:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoUriRoot: '/dcm4chee-arc/aets/DCM4CHEE/wado',
+        qidoRoot: '/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoRoot: '/dcm4chee-arc/aets/DCM4CHEE/rs',
         qidoSupportsIncludeField: true,
         imageRendering: 'wadors',
         enableStudyLazyLoad: true,
         thumbnailRendering: 'wadors',
         requestOptions: {
-          auth: 'admin:admin',
+          auth: 'admin:LinkQ@2026',
         },
         dicomUploadEnabled: true,
         singlepart: 'pdf,video',
@@ -312,7 +310,7 @@ window.config = {
         },
         omitQuotationForMultipartRequest: true,
       },
-    }
+    },
   ],
   httpErrorHandler: error => {
     // This is 429 when rejected from the public idc sandbox too often.
