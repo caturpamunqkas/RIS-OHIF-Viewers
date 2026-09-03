@@ -45,6 +45,7 @@ import {
   SculptorTool,
   SplineContourSegmentationTool,
   LabelMapEditWithContourTool,
+  ScaleOverlayTool,
 } from '@cornerstonejs/tools';
 import { LabelmapSlicePropagationTool, MarkerLabelmapTool } from '@cornerstonejs/ai';
 import * as polySeg from '@cornerstonejs/polymorphic-segmentation';
@@ -70,6 +71,7 @@ export default function initCornerstoneTools(configuration = {}) {
       },
     },
   });
+  addTool(ScaleOverlayTool);
   addTool(PanTool);
   addTool(SegmentBidirectionalTool);
   addTool(WindowLevelTool);
